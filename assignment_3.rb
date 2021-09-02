@@ -33,4 +33,4 @@ p solution(1,3,1).size # expect size 5 got 5
 p solution(0,1,8).size # expect size 5 got 5 
 p solution(2,2,2).size # small size expect 6 got 6 
 
-p solution(5,7,3)
+p solution(5,7,3) # wrong answer
