@@ -1,17 +1,15 @@
 def solution(number) 
+  arr = []
+  return arr << number if number < 10
 
-	arr = Array.new 
+  while number != 0 do 
+    arr << number % 10 
+    number = number / 10 
+  end 
 
-	return arr << number if number < 10
-
-	while number != 0 do 
-		arr << number % 10 
-		number = number / 10 
-	end 
-
-	arr = arr.sort.reverse
-	res = arr.join.to_i
-	return res
+  arr = arr.sort.reverse
+  res = arr.join.to_i
+  res
 end 
 
 #test 4 digits
