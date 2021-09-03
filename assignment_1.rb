@@ -1,14 +1,14 @@
 def solution(number) 
   arr = []
-	return number if number < 10
+  return number if number < 10
 
-	while number != 0 do 
-  	arr << number%10 
-		number
-	end 
+  while number != 0 do 
+    arr << number%10 
+	  number
+  end 
 	
-	arr_sort = arr.sort.reverse
-	arr_sort.join.to_i
+  arr_sort = arr.sort.reverse
+  arr_sort.join.to_i
 end 
 
 #test 4 digits
