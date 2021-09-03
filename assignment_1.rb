@@ -1,5 +1,5 @@
 def solution(number) 
-	arr = []
+	arr = [] # test spcaing
   return number if number < 10
 
 	while number != 0 do 
