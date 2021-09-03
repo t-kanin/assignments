@@ -2,7 +2,7 @@ def solution(a,b,c)
   s = ''
   count = 0
   total = a + b + c 
-  hash = { 'a'=> a, 'b'=> b, 'c'=> c}
+  hash = { 'a' => a, 'b' => b, 'c' => c}
   hash_sort = hash.sort_by { |k, v| -v}
   k_max, v_max = hash_sort.first 
   k_mid, v_mid = hash_sort[1]
