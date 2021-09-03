@@ -1,12 +1,10 @@
 def solution(number) 
-
-	arr = Array.new 
-
+	arr = []
 	return number if number < 10
 
 	while number != 0 do 
-		arr << number % 10 
-		number = number / 10 
+		arr << number%10 
+		number = number/10 
 	end 
 
 	arr_sort = arr.sort.reverse
@@ -24,9 +22,3 @@ p test0 = solution(0) #expect 0 got 0
 
 # test 2 digits
 p test5 = solution(45) # expect 54 got 54
-
-
-
-
-
-
