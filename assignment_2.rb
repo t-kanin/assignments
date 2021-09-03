@@ -1,7 +1,7 @@
 class TreeNode 
-  attr_accessor :val,:l,:r
+  attr_accessor :val, :l, :r
 
-  def initialize(val, l=nil , r=nil)
+  def initialize(val, l=nil, r=nil)
     @val = val
     @l = l
     @r = r
@@ -14,18 +14,18 @@ def traverse(tree, max)
   #check if val is higher than root
   if tree.val >= max
     sum = 1
-    sum += traverse(tree.l,max) if tree.l != nil
-    sum += traverse(tree.r,max) if tree.r != nil
+    sum += traverse(tree.l, tree.val) unless tree.l.nil?
+    sum += traverse(tree.r, tree.val) unless tree.r.nil?
   else
-    # if val lower than root check left and right node 
-    sum += traverse(tree.l, max) if tree.l != nil
-    sum += traverse(tree.r, max) if tree.r != nil
+    sum = 0
+    sum += traverse(tree.l, max) unless tree.l.nil?
+    sum += traverse(tree.r, max) unless tree.r.nil?
   end
   sum
 end 
 
 def solution(tree)
-  return 0 if tree.val == nil
+  return 0 if tree.val.nil?
 
   # max number == tree root
   traverse(tree, tree.val)
@@ -42,10 +42,10 @@ root_tree = TreeNode.new(1)
 p root_tree_res = solution(root_tree)
 
 # basic test 
-#expect 3 got 3 
+#expect 2 got 2
 basic_tree_l = TreeNode.new(7)
 basic_tree_r = TreeNode.new(3)
-basic_tree = TreeNode.new(5,basic_tree_l,basic_tree_r)
+basic_tree = TreeNode.new(5, basic_tree_l,basic_tree_r)
 
 p basic_tree_res = solution(basic_tree)
 
@@ -54,15 +54,21 @@ p basic_tree_res = solution(basic_tree)
 # expect 4 got 4 
 tree_l_l = TreeNode.new(20)
 tree_l_r = TreeNode.new(21)
-tree_l = TreeNode.new(3,tree_l_l,tree_l_r)
+tree_l = TreeNode.new(3, tree_l_l, tree_l_r)
 
 tree_r_l = TreeNode.new(1)
-tree_r = TreeNode.new(10,tree_r_l)
-tree = TreeNode.new(5,tree_l,tree_r)
+tree_r = TreeNode.new(10, tree_r_l)
+tree = TreeNode.new(5, tree_l, tree_r)
 
 p tree_res = solution(tree)
-# 		5
-# 	3 	10
-# 20 21	1
-# ans = 4 
-  
+
+# test exmaple 2  expect 2 
+tree_l = TreeNode.new(2, TreeNode.new(8), TreeNode.new(7))
+tree = TreeNode.new(8, tree_l, TreeNode.new(6))
+p solution(tree)
+
+tree_l_l = TreeNode.new(2)
+tree_l = TreeNode.new(3, tree_l_l)
+tree = TreeNode.new(1, tree_l)
+p solution(tree) # expect 2  got 2
+ 
