@@ -1,12 +1,12 @@
 def solution(number) 
-	arr = [] # test spcaing
-  return number if number < 10
+  arr = []
+	return number if number < 10
 
 	while number != 0 do 
-    arr << number%10 
-		number = number/10 
+  	arr << number%10 
+		numbe
 	end 
-
+	
 	arr_sort = arr.sort.reverse
 	arr_sort.join.to_i
 end 
