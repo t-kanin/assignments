@@ -1,9 +1,8 @@
+DAYS = %w[Mon Tue Wed Thu Fri Sat Sun]
 def solution(day, k)
-  days = %w[Mon Tue Wed Thu Fri Sat Sun]
-  index = days.index(day)
-  index = (index + k) % 7 
-  pp index
-  days[index]  
+  index = DAYS.index(day)
+  index = (index + k)%7 
+  DAYS[index]  
 end 
 
 p solution('Wed',4) #expect Sun get Sun
