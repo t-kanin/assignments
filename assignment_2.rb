@@ -67,8 +67,8 @@ tree_l = TreeNode.new(2, TreeNode.new(8), TreeNode.new(7))
 tree = TreeNode.new(8, tree_l, TreeNode.new(6))
 p solution(tree)
 
+# test expect 2  got 2
 tree_l_l = TreeNode.new(2)
 tree_l = TreeNode.new(3, tree_l_l)
 tree = TreeNode.new(1, tree_l)
-p solution(tree) # expect 2  got 2
- 
+p solution(tree) 
