@@ -2,7 +2,7 @@ class Ticket
   attr_reader :id, :restrictions
 
   def initialize(id, restrictions)
-    @id = id 
+    @id = id
     @restrictions = restrictions
   end 
 
@@ -62,7 +62,7 @@ ticket = Ticket.new(1, %w[English])
 tickets << ticket
 agent1 = Agent.new("A", %w[English], 2)
 agents << agent1
-agent2 = Agent.new("B", %w[English Japanese], )
+agent2 = Agent.new("B", %w[English Japanese])
 agents << agent2 
 agent3 = Agent.new("C", %w[History Thai], 3)
 agents << agent3
