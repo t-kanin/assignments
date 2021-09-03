@@ -13,7 +13,7 @@ def traverse(tree, max)
   sum = 0
   #check if val is higher than root
   if tree.val >= max
-    sum = 1 # if tree is valid, always count root 
+    sum = 1
     sum += traverse(tree.l,max) if tree.l != nil
     sum += traverse(tree.r,max) if tree.r != nil
   else
@@ -65,5 +65,4 @@ p tree_res = solution(tree)
 # 	3 	10
 # 20 21	1
 # ans = 4 
-  
   
