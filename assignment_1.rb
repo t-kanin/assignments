@@ -4,7 +4,7 @@ def solution(number)
 
 	while number != 0 do 
   	arr << number%10 
-		numbe
+		number
 	end 
 	
 	arr_sort = arr.sort.reverse
