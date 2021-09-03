@@ -2,13 +2,13 @@ def solution(number)
   arr = []
   return number if number < 10
 
-  while number != 0 do 
+  loop do 
     arr << number%10 
-    number
+    number /= 10
+    break if number.zero?
   end 
 	
-  arr_sort = arr.sort.reverse
-  arr_sort.join.to_i
+  arr.sort.reverse.join.to_i
 end 
 
 #test 4 digits
