@@ -20,3 +20,4 @@ p solution("aabbcc", [1,2,1,2,1,2]) #expect 3 got 3
 p solution("aaaa", [3,4,5,6]) #expect 12 got 12
 p solution("ababa", [10,5,10,5,10]) # expect 0 got 0
 p solution("aaabbbabbbb",[3,5,10,7,5,3,5,5,4,8,1]) #expect 26 got 26 
+
