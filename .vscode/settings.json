@@ -1,4 +1,30 @@
 {
-    "editor.tabSize": 2,
-    "editor.detectIndentation": false
+  "files.associations": {
+      ".env": "ruby",
+      "*.config": "markdown",
+      "*.json": "json",
+      "credentials": "markdown",
+      "config": "markdown"
+  },
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.rulers": [
+      80,
+      120
+  ],
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 5000,
+  "files.insertFinalNewline": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "explorer.confirmDelete": false,
+  "[json]": {
+      "editor.quickSuggestions": {
+          "strings": true
+      },
+      "editor.suggest.insertMode": "replace"
+  },
+  "ruby.format": "rubocop",
+  "git.autofetch": true,
+  "diffEditor.ignoreTrimWhitespace": false,
 }
