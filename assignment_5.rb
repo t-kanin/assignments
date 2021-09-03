@@ -1,6 +1,5 @@
 class Ticket
-  attr_reader :id
-  attr_accessor :restrictions
+  attr_reader :id, :restrictions
 
   def initialize(id, restrictions)
     @id = id 
@@ -13,7 +12,7 @@ class Ticket
 end 
 
 class Agent 
-  attr_accessor :name, :skills, :load
+  attr_reader :name, :skills, :load
 
   def initialize(name, skills, load = 0)
     @name = name 
@@ -35,6 +34,7 @@ class LeastLoadedAgent
   def find(ticket,agents)
     available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 } # common method
     return  puts 'No agent available' if available_agents.empty? 
+
     available_agents.sort_by!(&:load)
     available_agents.first.print_available(ticket.id)
   end 
@@ -44,6 +44,7 @@ class LeastFlexibleAgent
   def find(ticket,agents)
     available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
     return  puts 'No agent available' if available_agents.empty? 
+
     available_agents.sort_by!(&:skills)
     available_agents.first.print_available(ticket.id) 
   end 
@@ -59,9 +60,9 @@ tickets = []
 agents = []
 ticket = Ticket.new(1, %w[English])
 tickets << ticket
-agent1 = Agent.new("A", %w[English],2)
+agent1 = Agent.new("A", %w[English], 2)
 agents << agent1
-agent2 = Agent.new("B", %w[English Japanese],0)
+agent2 = Agent.new("B", %w[English Japanese], )
 agents << agent2 
 agent3 = Agent.new("C", %w[History Thai], 3)
 agents << agent3
@@ -75,16 +76,16 @@ break_point
 
 #test 
 puts "Least loaded policy: "
-least_loaded_policy = LeastLoadedAgent.new()
-least_loaded_policy.find(tickets[0],agents)  #expect agent B to take the job get agent B 
+least_loaded_policy = LeastLoadedAgent.new
+least_loaded_policy.find(tickets[0], agents)  #expect agent B to take the job get agent B 
 break_point
 
-puts "Least flexible policy"
-least_flexible_policy = LeastFlexibleAgent.new() 
-least_flexible_policy.find(tickets[0],agents) #expect agent A to take the job got agent A 
+puts "Least flexible policy: "
+least_flexible_policy = LeastFlexibleAgent.new
+least_flexible_policy.find(tickets[0], agents) #expect agent A to take the job got agent A 
 break_point
 
 ticket2 = Ticket.new(2, %w[History Thai]) 
 tickets << ticket2
-least_loaded_policy.find(tickets[1],agents)  # expect no agent 
-least_flexible_policy.find(tickets[1],agents) # expect no agent 
+least_loaded_policy.find(tickets[1], agents)  # expect no agent 
+least_flexible_policy.find(tickets[1], agents) # expect no agent 
