@@ -1,3 +1,7 @@
+class AgentNotFoundException < StandardError 
+  
+end 
+
 class Ticket
   attr_reader :id, :restrictions
 
@@ -31,9 +35,9 @@ class Agent
 end 
 
 class LeastLoadedAgent 
-  def find(ticket,agents)
-    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 } # common method
-    return  puts 'No agent available' if available_agents.empty? 
+  def find(ticket,agents)  # ticket.restrictions - agent.skills
+    available_agents = agents.select { |agent| agent.skills.include?(ticket.restrictions) && agent.load < 3 } # common method
+    return  puts "No agent available" if available_agents.empty?
 
     available_agents.sort_by!(&:load)
     available_agents.first.print_available(ticket.id)
@@ -42,8 +46,8 @@ end
 
 class LeastFlexibleAgent 
   def find(ticket,agents)
-    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
-    return  puts 'No agent available' if available_agents.empty? 
+    available_agents = agents.select { |agent| agent.skills.include?(ticket.restrictions) && agent.load < 3 }
+    return  puts "No agent available" if available_agents.empty? 
 
     available_agents.sort_by!(&:skills)
     available_agents.first.print_available(ticket.id) 
@@ -84,7 +88,7 @@ puts "Least flexible policy: "
 least_flexible_policy = LeastFlexibleAgent.new
 least_flexible_policy.find(tickets[0], agents) #expect agent A to take the job got agent A 
 break_point
-
+puts "Expect no agent:"
 ticket2 = Ticket.new(2, %w[History Thai]) 
 tickets << ticket2
 least_loaded_policy.find(tickets[1], agents)  # expect no agent 
