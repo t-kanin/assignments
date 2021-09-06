@@ -1,5 +1,3 @@
-class AgentNotFoundException < StandardError; end
-
 class Ticket
   attr_reader :id, :restrictions
 
@@ -34,20 +32,24 @@ end
 
 class LeastLoadedAgent
   def find(ticket, agents)
-    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
-    return puts 'No agent available' if available_agents.empty?
+    agents.select { |agent| (ticket.restrictions - agent.skills).empty? }
+    raise 'NoAgentFound' if agents.empty?
 
-    available_agents.sort_by!(&:load)
-    available_agents.first
+    agents.select! { |agent| agent.load < 3 }
+    raise 'AgentsHaveTooMuchLoad' if agents.empty?
+
+    agents.sort_by!(&:load).first
   end
 end
 
 class LeastFlexibleAgent
   def find(ticket, agents)
-    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
-    return puts 'No agent available' if available_agents.empty?
+    agents.select! { |agent| (ticket.restrictions - agent.skills).empty? }
+    raise 'NoAgentFound' if agents.empty?
 
-    available_agents.sort_by!(&:skills)
-    available_agents.first
+    agents.select! { |agent| agent.load < 3 }
+    raise 'AgentsHaveTooMuchLoad' if agents.empty?
+
+    agents.sort_by!(&:skills).first
   end
 end
