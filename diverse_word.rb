@@ -5,7 +5,7 @@ class DiverseWord
     [s, v]
   end
 
-  def solution(a,b,c) 
+  def solution(a, b, c)
     s = ''
     count = 0
     total = a + b + c
@@ -17,7 +17,7 @@ class DiverseWord
     k_mid, v_mid = hash_sort[1]
     k_min, v_min = hash_sort.last
 
-    for i in 0...total do 
+    for _ in 0...total do
       if count < 2 && !v_max.zero?
         s, v_max = calculate(s, v_max, k_max)
         count += 1
