@@ -1,9 +1,8 @@
 class DayOfWeek
+  DAYS = %w[Mon Tue Wed Thu Fri Sat Sun].freeze
   def solution(day, k)
-    days = %w[Mon Tue Wed Thu Fri Sat Sun]
-    days.freeze
-    index = days.index(day)
+    index = DAYS.index(day)
     index = (index + k) % 7
-    days[index]
+    DAYS[index]
   end
 end
