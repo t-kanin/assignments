@@ -1,11 +1,19 @@
 class DiverseWord
+  attr_accessor :a, :b, :c
+
+  def initialize(a, b, c)
+    @a = a
+    @b = b
+    @c = c
+  end
+
   def calculate(s, v, k)
     s += k
     v -= 1
     [s, v]
   end
 
-  def solution(a, b, c)
+  def solution
     s = ''
     count = 0
     total = a + b + c
