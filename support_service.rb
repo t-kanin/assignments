@@ -34,20 +34,20 @@ end
 
 class LeastLoadedAgent
   def find(ticket, agents)
-    available_agents = agents.select { |agent| agent.skills.include?(ticket.restrictions) && agent.load < 3 }
+    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
     return puts 'No agent available' if available_agents.empty?
 
     available_agents.sort_by!(&:load)
-    available_agents.first.print_available(ticket.id)
+    available_agents.first
   end
 end
 
 class LeastFlexibleAgent
   def find(ticket, agents)
-    available_agents = agents.select { |agent| agent.skills.include?(ticket.restrictions) && agent.load < 3 }
+    available_agents = agents.select { |agent| (ticket.restrictions - agent.skills).empty? && agent.load < 3 }
     return puts 'No agent available' if available_agents.empty?
 
     available_agents.sort_by!(&:skills)
-    available_agents.first.print_available(ticket.id)
+    available_agents.first
   end
 end
