@@ -1,11 +1,19 @@
 class DiverseWord
+  attr_accessor :a, :b, :c
+
+  def initialize(a, b, c)
+    @a = a
+    @b = b
+    @c = c
+  end
+
   def calculate(s, v, k)
     s += k
     v -= 1
     [s, v]
   end
 
-  def solution(a,b,c) 
+  def solution
     s = ''
     count = 0
     total = a + b + c
@@ -17,7 +25,7 @@ class DiverseWord
     k_mid, v_mid = hash_sort[1]
     k_min, v_min = hash_sort.last
 
-    for i in 0...total do 
+    for _ in 0...total do
       if count < 2 && !v_max.zero?
         s, v_max = calculate(s, v_max, k_max)
         count += 1
