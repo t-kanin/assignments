@@ -12,7 +12,8 @@ class Ticket
 end
 
 class Agent
-  attr_reader :name, :skills, :load
+  attr_accessor :load
+  attr_reader :name, :skills
 
   def initialize(name, skills, load = 0)
     @name = name
@@ -30,26 +31,34 @@ class Agent
   end
 end
 
-class LeastLoadedAgent
-  def find(ticket, agents)
-    agents.select { |agent| (ticket.restrictions - agent.skills).empty? }
-    raise 'NoAgentFound' if agents.empty?
+class Agency
+  attr_accessor :agents
+  attr_reader :ticket
 
-    agents.select! { |agent| agent.load < 3 }
-    raise 'AgentsHaveTooMuchLoad' if agents.empty?
-
-    agents.sort_by!(&:load).first
+  def initialize(ticket, agents)
+    @ticket = ticket
+    @agents = agents
   end
-end
 
-class LeastFlexibleAgent
-  def find(ticket, agents)
+  def find_available_agents
     agents.select! { |agent| (ticket.restrictions - agent.skills).empty? }
     raise 'NoAgentFound' if agents.empty?
 
     agents.select! { |agent| agent.load < 3 }
     raise 'AgentsHaveTooMuchLoad' if agents.empty?
 
-    agents.sort_by!(&:skills).first
+    agents
+  end
+end
+
+class LeastLoadedAgent < Agency
+  def find
+    find_available_agents.sort_by!(&:load).first
+  end
+end
+
+class LeastFlexibleAgent < Agency
+  def find
+    find_available_agents.sort_by!(&:skills).first
   end
 end
