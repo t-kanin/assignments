@@ -1,5 +1,11 @@
 class MaxSibling
-  def solution(number)
+  attr_accessor :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def solution
     return number if number < 10
 
     find_max(number)
