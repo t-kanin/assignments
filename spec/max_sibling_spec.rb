@@ -4,6 +4,7 @@ require './max_sibling'
 describe MaxSibling do
   describe '#solution' do
     subject { instance.solution }
+    
     let(:instance) { described_class.new(321) }
 
     context 'with example' do
